@@ -1,0 +1,11 @@
+program par
+	implicit none
+	
+	integer,parameter :: i=2
+	
+	print*,i
+	i=i+1     ! qui il programma cerca di modificare i
+
+	print*,i , i+3
+
+end program par 

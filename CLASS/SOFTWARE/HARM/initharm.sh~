@@ -1,0 +1,2 @@
+./harm.x
+gnuplot -e plot('fort.1'  u 2:3 w l, 'fort.3' u 1:2 w l)
