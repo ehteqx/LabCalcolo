@@ -1,6 +1,0 @@
-delta_t = 0.015 OPTIMAL
-time = 10
-massa = 1
-kappa = 10
-pos0 = 10
-vel0 = 0
