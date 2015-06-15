@@ -1,38 +1,3 @@
-program harm_c
- 
- 	implicit none
-	
-	integer,parameter :: ik = selected_int_kind(8)
-	integer,parameter :: rk = selected_real_kind(8)
-
- 	real (kind = rk)    :: lunghezza=1.0_rk, agrav=9.81_rk 	! valori di default per lunghezza del pendolo e ac. di gravita'
- 	real (kind = rk)   :: dt, ekin, epot			! OPTIMAL TIMESTEP: ????? (Recommended)
- 	real (kind = rk)    :: agl, vang, vang_parziale, mixedt, massa
- 	integer (kind = ik) :: nstep, it
- 	
- 	write(unit=*,fmt="(a)",advance="no")"delta t : "        ! il formato (a) chiede che il dato sia trattato come 
- 	read*,dt   
- 	                                        		! caratteri e advance="no"  sopprime l'  inserimento del 
- 	write(unit=*,fmt="(a)",advance="no")"n.step: "          ! caratter "a capo"  alla fine della linea per cui 
- 	read*,nstep    
- 	 	
- 	write(unit=*,fmt="(a)",advance="no")"massa : "        	! il formato (a) chiede che il dato sia trattato come 
- 	read*,massa   
- 	                                    			! la prossima operazione di lettura/scrittura inziera'
- 	write(unit=*,fmt="(a)",advance="no")"lunghezza: "       ! sulla stessa riga di schermo di quella corrente
- 	read*,lunghezza
- 	
- 	write(unit=*,fmt="(a)",advance="no")"agrav: "
- 	read*,agrav
- 	
- 	write(unit=*,fmt="(a)",advance="no")"agl(0): "
- 	read*,agl
- 	
- 	write(unit=*,fmt="(a)",advance="no")"vang(0): "
- 	read*,vang
- 	
- 	it=0_ik
- 	
  	write(unit=1,fmt=*)it,it*dt,agl,vang
  	
  	epot =  lunghezza*massa*agrav*(1_ik-cos(agl))
