@@ -1,10 +1,10 @@
-! HARM-DRV - v. 0.1 alpha
+! HARM_DRV - v. 1.0 alpha
 ! A simple computational model for a Driven Harmonic Oscillator
 ! (using the Euler-Cromer algorithm).
 ! (C) Emanuele Ballarin - 15/06/2015
 !###############################################################################
 
-PROGRAM HARM-DRV
+PROGRAM HARM_DRV
 
 	implicit none
 	
@@ -95,4 +95,4 @@ PROGRAM HARM-DRV
 		
 	end do
 
-END PROGRAM HARM-DRV
+END PROGRAM HARM_DRV
