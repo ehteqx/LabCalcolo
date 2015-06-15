@@ -48,7 +48,7 @@ PROGRAM HARM-DRV
 	
 	time = it*dt		! Time
 	
-	alpha = (-((om)^2)*(sin(theta))) - (a*(omega)) + (f*(cos(w*time))) ! Angular acceleration (given equation)
+	alpha = (-((om)**2)*(sin(theta))) - (a*(omega)) + (f*(cos(w*time))) ! Angular acceleration (given equation)
 	
 	epot = (length*mass*gravity*(1.0_rk - cos(theta)))		! Potential energy
 	
@@ -79,7 +79,7 @@ PROGRAM HARM-DRV
 	! Calculating the new values of the other variables
 		time = it*dt		! Time
 	
-		alpha = (-((om)^2)*(sin(theta))) - (a*(omega)) + (f*(cos(w*time))) ! Angular acceleration (given equation)
+		alpha = (-((om)**2)*(sin(theta))) - (a*(omega)) + (f*(cos(w*time))) ! Angular acceleration (given equation)
 	
 		epot = (length*mass*gravity*(1.0_rk - cos(theta)))		! Potential energy
 	
