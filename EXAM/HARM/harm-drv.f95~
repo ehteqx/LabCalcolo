@@ -26,9 +26,9 @@ PROGRAM HARM-DRV
 	
 	real (kind = rk)	:: theta, omega, alpha 	! Angular position, velocity, acceleration
 	real (kind = rk)	:: dt, time = 0.0_rk 	! Timestep (OPTIMAL: x.xxx), elapsed time
-	real (kind = rk)	:: ekin, epot 			! Kinetic energy, potential energy
+	real (kind = rk)	:: ekin, epot, energy 	! Kinetic energy, potential energy, total energy
 	
-	integer (kind = ik) :: nstep, it			! Number of iterations, counter
+	integer (kind = ik) :: nstep, it = 0.0_ik			! Number of iterations, counter
 	
 ! # SETTINGS # 
 	
@@ -43,15 +43,56 @@ PROGRAM HARM-DRV
 
  	write(unit=*,fmt="(a)",advance="no")"Initial angular velocity: "	! Data as characters and
  	read*, omega														! suppressed newline command
+	
+! # EXTRA CALCULATIONS #
+	
+	time = it*dt		! Time
+	
+	alpha = (-((om)^2)*(sin(theta))) - (a*(omega)) + (f*(cos(w*time))) ! Angular acceleration (given equation)
+	
+	epot = (length*mass*gravity*(1.0_rk - cos(theta)))		! Potential energy
+	
+	ekin = ((0.5_rk)*mass*((length*omega)**2))				! Kinetic energy
+	
+	energy = (epot + ekin)
+	
+! # WRITING TO FILE # 
+	
+	! Creating files
+		open(unit=1, file='motion.dat')
+		open(unit=2, file='energy.dat')
 
-
-
-
-
-
-
-
-
-
+	! Writing motion data
+		write(unit=1,fmt=*)it, time, theta, omega, alpha
+		
+	! Writing energy data
+		write(unit=2,fmt=*)it, time, ekin, epot, energy
+	
+! # INTEGRATION (USING THE EULER-CROMER ALGORITHM) #
+	
+	do it = 1,nstep,1
+		
+	! Obtaining the new values for angular velocity and position
+		omega = (omega + (dt*alpha))		! The angular velocity is integrated using the ang. acceleration
+		theta = (theta + (dt*omega))		! The angular position is integrated using the ang. velocity
+		
+	! Calculating the new values of the other variables
+		time = it*dt		! Time
+	
+		alpha = (-((om)^2)*(sin(theta))) - (a*(omega)) + (f*(cos(w*time))) ! Angular acceleration (given equation)
+	
+		epot = (length*mass*gravity*(1.0_rk - cos(theta)))		! Potential energy
+	
+		ekin = ((0.5_rk)*mass*((length*omega)**2))				! Kinetic energy
+	
+		energy = (epot + ekin)
+		
+	! Writing motion data
+		write(unit=1,fmt=*)it, time, theta, omega, alpha
+		
+	! Writing energy data
+		write(unit=2,fmt=*)it, time, ekin, epot, energy
+		
+	end do
 
 END PROGRAM HARM-DRV
