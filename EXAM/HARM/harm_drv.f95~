@@ -1,16 +1,16 @@
-! HARM_DRV - v. 1.1
+! HARM_DRV - v. 1.2
 ! A simple computational model for a Driven Harmonic Oscillator (using the Euler-Cromer algorithm).
-! (C) Emanuele Ballarin - 15/06/2015
+! (C) Emanuele Ballarin (ehteqx@gmail.com) -- 16/06/2015
 !###################################################################################################
 
 PROGRAM HARM_DRV
-
+	
 	implicit none
 	
 ! # PARAMETERS # 
 	
-	integer, parameter 	:: ik = selected_int_kind(38)
-	integer, parameter 	:: rk = selected_real_kind(33)
+	integer, parameter 	:: ik = selected_int_kind(38)		! MAX: 38; STANDARD: 6
+	integer, parameter 	:: rk = selected_real_kind(33)		! MAX: 33; STANDARD: 4
 	real (kind = rk), parameter		:: gravity = 9.80665_rk	! As recommended in CODATA 2010
 	real (kind = rk), parameter		:: pi = acos(-1.0_rk)	! Pi
 	
@@ -27,30 +27,51 @@ PROGRAM HARM_DRV
 ! # VARIABLES # 
 	
 	real (kind = rk)	:: theta, omega, alpha 	! Angular position, velocity, acceleration
-	real (kind = rk)	:: dt, time = 0.0_rk 	! Timestep (OPTIMAL: x.xxx), elapsed time
+	real (kind = rk)	:: dt, time = 0.0_rk 	! Timestep (OPTIMAL: x.xxx), elapsed time (initial: 0.0)
 	real (kind = rk)	:: ekin, epot, energy 	! Kinetic energy, potential energy, total energy
 	
-	integer (kind = ik) :: nstep, it = 0.0_ik			! Number of iterations, counter
+	integer (kind = ik) :: nstep, it = 0_ik			! Number of iterations, counter (initial: 0)
+
+! # SOME COSMETICS # 
+	
+	print*, ' '
+	print*, '####################################################################'
+	print*, '                          HARM_DRV - v. 1.2                         '	
+	print*, '    A simple computational model for a Driven Harmonic Oscillator   '
+	print*, '                 (using the Euler-Cromer algorithm)                 '
+	print*, '                                                                    '
+	print*, '             (C) Emanuele Ballarin (ehteqx@gmail.com)               '
+	print*, '####################################################################'
+	print*, ' '
 	
 ! # SETTINGS # 
 	
-	write(unit=*,fmt="(a)",advance="no")"Timestep value : "				! Data as characters and
- 	read*, dt															! suppressed newline command
+	dt = -1.0_rk				! Necessary for the 'do while' statement to be false
+	do while (dt .LE. 0.0_rk)
+		write(unit=*,fmt="(a)",advance="no")"Timestep value (must be positive): "	! Data as characters and
+ 		read*, dt																	! suppress newline command
+ 	end do
 
- 	write(unit=*,fmt="(a)",advance="no")"Number of steps: "				! Data as characters and
- 	read*, nstep														! suppressed newline command    
+ 	nstep = -1.0_ik				! Necessary for the 'do while' statement to be false
+ 	do while (nstep .LE. 0.0_rk)
+ 		write(unit=*,fmt="(a)",advance="no")"Number of steps (must be integer, positive): "	! Data as characters and
+ 		read*, nstep																		! suppress newline command
+ 	end do    
 
- 	write(unit=*,fmt="(a)",advance="no")"Initial angular position: "	! Data as characters and
- 	read*, theta														! suppressed newline command
+ 	write(unit=*,fmt="(a)",advance="no")"Initial angular position: "				! Data as characters and
+ 	read*, theta																	! suppress newline command
 
- 	write(unit=*,fmt="(a)",advance="no")"Initial angular velocity: "	! Data as characters and
- 	read*, omega														! suppressed newline command
+ 	write(unit=*,fmt="(a)",advance="no")"Initial angular velocity: "				! Data as characters and
+ 	read*, omega																	! suppress newline command  
+	
+	print*, ' '								! Some info for the user
+	print*, 'Computation started...'		! Some info for the user
 	
 ! # EXTRA CALCULATIONS #
 	
 	time = it*dt		! Time
 	
-	alpha = (-((om)**2)*(sin(theta))) - (a*(omega)) + (f*(cos(w*time))) ! Angular acceleration (given equation)
+	alpha = (-((om)**2)*(sin(theta))) - (a*(omega)) + (f*(cos(w*time))) ! Angular acceleration (equation given)
 	
 	epot = (length*mass*gravity*(1.0_rk - cos(theta)))		! Potential energy
 	
@@ -63,12 +84,16 @@ PROGRAM HARM_DRV
 	! Creating files
 		open(unit=1, file='motion.dat')
 		open(unit=2, file='energy.dat')
+		open(unit=3, file='traject.dat')
 
 	! Writing motion data
 		write(unit=1,fmt=*)it, time, theta, omega, alpha
 		
 	! Writing energy data
 		write(unit=2,fmt=*)it, time, ekin, epot, energy
+		
+	! Writing trajectory data
+		write(unit=3,fmt=*)it, time, (length*sin(theta)), (length*(1.0_rk - cos(theta)))		! x and y coordinates
 	
 ! # INTEGRATION (USING THE EULER-CROMER ALGORITHM) #
 	
@@ -95,6 +120,13 @@ PROGRAM HARM_DRV
 	! Writing energy data
 		write(unit=2,fmt=*)it, time, ekin, epot, energy
 		
-	end do
+	! Writing trajectory data
+		write(unit=3,fmt=*)it, time, (length*sin(theta)), (length*(1.0_rk - cos(theta)))
+		
+	end do  
+	
+	print*, ' '								! Some info for the user
+	print*, 'Computation completed!'		! Some info for the user
+	print*, ' '
 
 END PROGRAM HARM_DRV
