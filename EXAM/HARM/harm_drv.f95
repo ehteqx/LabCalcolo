@@ -1,8 +1,7 @@
-! HARM_DRV - v. 1.0 beta
-! A simple computational model for a Driven Harmonic Oscillator
-! (using the Euler-Cromer algorithm).
+! HARM_DRV - v. 1.0 Release Candidate
+! A simple computational model for a Driven Harmonic Oscillator (using the Euler-Cromer algorithm).
 ! (C) Emanuele Ballarin - 15/06/2015
-!###############################################################################
+!###################################################################################################
 
 PROGRAM HARM_DRV
 
@@ -10,15 +9,16 @@ PROGRAM HARM_DRV
 	
 ! # PARAMETERS # 
 	
-	integer, parameter 	:: ik = selected_int_kind(8)
-	integer, parameter 	:: rk = selected_real_kind(8)
+	integer, parameter 	:: ik = selected_int_kind(38)
+	integer, parameter 	:: rk = selected_real_kind(33)
 	real (kind = rk), parameter		:: gravity = 9.80665_rk	! As recommended in CODATA 2010
+	real (kind = rk), parameter		:: pi = acos(-1.0_rk)	! Pi
 	
 	real (kind = rk), parameter		:: om = 1.0_rk			! Given value
 	real (kind = rk), parameter		:: a = 0.5_rk			! Given value
 !	real (kind = rk), parameter		:: a = 0.0_rk			! Given value (0.0 for conservative system)
 	real (kind = rk), parameter		:: f = 1.15_rk			! Given value
-!	real (kind = rk), parameter		:: f = 1.15_rk			! Given value (0.0 for conservative system)
+!	real (kind = rk), parameter		:: f = 0.0_rk			! Given value (0.0 for conservative system)
 	real (kind = rk), parameter		:: w = 0.6_rk			! Given value
 
 	real (kind = rk), parameter		:: length = 1.0_rk		! "Standard" pendulum lenght
