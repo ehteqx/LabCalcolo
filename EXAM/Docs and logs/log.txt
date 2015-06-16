@@ -1,3 +1,7 @@
 ACCOMPLISHMENTS:
 
 - Software coded and debugged (D1)
+- Software extensively tested PASSED (D2)
+- Software tested with WolframAlpha PASSED (D2)
+
+- Version 1.1 released! (D2)

@@ -1,4 +1,4 @@
-! HARM_DRV - v. 1.0 Release Candidate
+! HARM_DRV - v. 1.1
 ! A simple computational model for a Driven Harmonic Oscillator (using the Euler-Cromer algorithm).
 ! (C) Emanuele Ballarin - 15/06/2015
 !###################################################################################################
