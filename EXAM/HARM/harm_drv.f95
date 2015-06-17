@@ -1,6 +1,6 @@
-! HARM_DRV - v. 1.4 FINAL
+! HARM_DRV - v. 1.5 FINAL
 ! A simple computational model for a Driven Harmonic Oscillator (using the Euler-Cromer algorithm).
-! (C) Emanuele Ballarin (ehteqx@gmail.com) -- 17/06/2015 # 19.41
+! (C) Emanuele Ballarin (ehteqx@gmail.com) -- 17/06/2015 # 23.14
 !###################################################################################################
 
 PROGRAM HARM_DRV
@@ -36,7 +36,7 @@ PROGRAM HARM_DRV
 
 	print*, ' '
 	print*, '####################################################################'
-	print*, '                          HARM_DRV - v. 1.4                         '
+	print*, '                    HARM_DRV - v. 1.5 FINAL                         '
 	print*, '    A simple computational model for a Driven Harmonic Oscillator   '
 	print*, '                 (using the Euler-Cromer algorithm)                 '
 	print*, '                                                                    '
@@ -48,14 +48,14 @@ PROGRAM HARM_DRV
 
 	dt = -1.0_rk				! Necessary for the 'do while' statement to be false
 	do while (dt .LE. 0.0_rk)
-		write(unit=*,fmt="(a)",advance="no")"Timestep value (must be positive): "	! Data as characters and
- 		read*, dt																	! suppress newline command
+		write(unit=*,fmt="(a)",advance="no")"Timestep value (must be positive; Recommended: 0.00015): "	! Data as characters and
+ 		read*, dt																						! suppress newline command
  	end do
 
  	nstep = -1.0_ik				! Necessary for the 'do while' statement to be false
  	do while (nstep .LE. 0.0_rk)
- 		write(unit=*,fmt="(a)",advance="no")"Number of steps (must be integer, positive): "	! Data as characters and
- 		read*, nstep																		! suppress newline command
+ 		write(unit=*,fmt="(a)",advance="no")"Number of steps (must be integer, positive; Standard: 800000): "	! Data as characters and
+ 		read*, nstep																							! suppress newline command
  	end do
 
  	write(unit=*,fmt="(a)",advance="no")"Initial angular position: "				! Data as characters and
