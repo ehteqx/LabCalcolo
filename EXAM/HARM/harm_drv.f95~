@@ -1,4 +1,4 @@
-! HARM_DRV - v. 1.2.1
+! HARM_DRV - v. 1.3
 ! A simple computational model for a Driven Harmonic Oscillator (using the Euler-Cromer algorithm).
 ! (C) Emanuele Ballarin (ehteqx@gmail.com) -- 16/06/2015
 !###################################################################################################
@@ -30,13 +30,13 @@ PROGRAM HARM_DRV
 	real (kind = rk)	:: dt, time = 0.0_rk 	! Timestep (OPTIMAL: x.xxx), elapsed time (initial: 0.0)
 	real (kind = rk)	:: ekin, epot, energy 	! Kinetic energy, potential energy, total energy
 
-	integer (kind = ik) :: nstep, it = 0_ik			! Number of iterations, counter (initial: 0)
+	integer (kind = ik) :: nstep, it = 0_ik		! Number of iterations, counter (initial: 0)
 
 ! # SOME COSMETICS #
 
 	print*, ' '
 	print*, '####################################################################'
-	print*, '                          HARM_DRV - v. 1.2.1                         '
+	print*, '                          HARM_DRV - v. 1.3                         '
 	print*, '    A simple computational model for a Driven Harmonic Oscillator   '
 	print*, '                 (using the Euler-Cromer algorithm)                 '
 	print*, '                                                                    '
