@@ -1,4 +1,4 @@
-! HARM_DRV - v. 1.2.1
+! HARM_DRV - v. 1.2
 ! A simple computational model for a Driven Harmonic Oscillator (using the Euler-Cromer algorithm).
 ! (C) Emanuele Ballarin (ehteqx@gmail.com) -- 16/06/2015
 !###################################################################################################
@@ -15,14 +15,14 @@ PROGRAM HARM_DRV
 	real (kind = rk), parameter		:: pi = acos(-1.0_rk)	! Pi
 
 	real (kind = rk), parameter		:: om = 1.0_rk			! Given value
-	real (kind = rk), parameter		:: a = 0.5_rk			! Given value
-!	real (kind = rk), parameter		:: a = 0.0_rk			! Given value (0.0 for conservative system)
-	real (kind = rk), parameter		:: f = 1.15_rk			! Given value
-!	real (kind = rk), parameter		:: f = 0.0_rk			! Given value (0.0 for conservative system)
+!	real (kind = rk), parameter		:: a = 0.5_rk			! Given value
+	real (kind = rk), parameter		:: a = 0.0_rk			! Given value (0.0 for conservative system)
+!	real (kind = rk), parameter		:: f = 1.15_rk			! Given value
+	real (kind = rk), parameter		:: f = 0.0_rk			! Given value (0.0 for conservative system)
 	real (kind = rk), parameter		:: w = 0.6_rk			! Given value
 
-	real (kind = rk), parameter		:: length = (gravity/(om**2))		! Pendulum lenght (from given parameters)
-	real (kind = rk), parameter		:: mass = 1.0_rk					! "Standard" pendulum mass
+	real (kind = rk), parameter		:: length = 1.0_rk		! "Standard" pendulum lenght
+	real (kind = rk), parameter		:: mass = 1.0_rk		! "Standard" pendulum mass
 
 ! # VARIABLES #
 
@@ -36,7 +36,7 @@ PROGRAM HARM_DRV
 
 	print*, ' '
 	print*, '####################################################################'
-	print*, '                          HARM_DRV - v. 1.2.1                         '
+	print*, '                          HARM_DRV - v. 1.2                         '
 	print*, '    A simple computational model for a Driven Harmonic Oscillator   '
 	print*, '                 (using the Euler-Cromer algorithm)                 '
 	print*, '                                                                    '
