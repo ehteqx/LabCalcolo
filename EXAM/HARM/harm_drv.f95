@@ -9,8 +9,8 @@ PROGRAM HARM_DRV
 
 ! # PARAMETERS #
 
-	integer, parameter 	:: ik = selected_int_kind(38)		! MAX: 38; STANDARD: 6
-	integer, parameter 	:: rk = selected_real_kind(33)		! MAX: 33; STANDARD: 4
+	integer, parameter 	:: ik = selected_int_kind(38)		! MAX: 38
+	integer, parameter 	:: rk = selected_real_kind(33)		! MAX: 33
 	real (kind = rk), parameter		:: gravity = 9.80665_rk	! As recommended in CODATA 2010
 	real (kind = rk), parameter		:: pi = acos(-1.0_rk)	! Pi
 
