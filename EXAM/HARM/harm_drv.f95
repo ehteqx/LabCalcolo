@@ -1,6 +1,6 @@
-! HARM_DRV - v. 1.5 FINAL
+! HARM_DRV - v. 1.6 FINAL
 ! A simple computational model for a Driven Harmonic Oscillator (using the Euler-Cromer algorithm).
-! (C) Emanuele Ballarin (ehteqx@gmail.com) -- 17/06/2015 # 23.14
+! (C) Emanuele Ballarin (ehteqx@gmail.com) -- 20/06/2015 # 18.02
 !###################################################################################################
 
 PROGRAM HARM_DRV
@@ -36,14 +36,14 @@ PROGRAM HARM_DRV
 
 	print*, ' '
 	print*, '######################################################################'
-	print*, '                     HARM_DRV - v. 1.5 FINAL                          '
+	print*, '                     HARM_DRV - v. 1.6 FINAL                          '
 	print*, '     A simple computational model for a Driven Harmonic Oscillator    '
 	print*, '                  (using the Euler-Cromer algorithm)                  '
 	print*, '                                                                      '
 	print*, '                 Copyright (C) 2015 Emanuele Ballarin                 '
 	print*, '                                                                      '
 	print*, 'HARM_DRV is free software, covered by the GNU General Public License v3,'
-	print*, '              and comes WITHOUT ANY WARRANTY WHATSOEVER.              '
+	print*, 'and comes with ABSOLUTELY NO WARRANTY WHATSOEVER.                     '
 	print*, 'For more information about the license: https://www.gnu.org/licenses/ '
 	print*, '######################################################################'
 	print*, ' '
